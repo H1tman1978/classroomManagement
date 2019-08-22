@@ -1,13 +1,22 @@
 from django.test import TestCase
 from students.models import Student
+from assignments.models import Assignment
+from teachers.models import Teacher
 
 
 # Create your model tests here.
 class StudentTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
-        Student.objects.create(student_id="G00001", first_name="Sally", last_name="McGuire", grade_level="K",
-                               phone_number=5207057335, email="sally.mcguire@anyschool.com")
+        Student.objects.create(student_id="G00001",
+                               first_name="Sally",
+                               last_name="McGuire",
+                               grade_level="K",
+                               phone_number=5207057335,
+                               email="sally.mcguire@anyschool.com",
+                               assigned_teachers=Teacher.objects.create(title="Mr.", first_name="Larry",
+                                                                        last_name="Seinfeld"),
+                               )
 
     def test_get_absolute_url(self):
         student = Student.objects.get(id=1)

@@ -6,6 +6,7 @@ from django.urls import reverse
 from phone_field import PhoneField
 from students.contentsettings import *
 from teachers.models import Teacher
+from assignments.models import Assignment
 
 
 # Create your models here.
@@ -19,7 +20,8 @@ class Student(models.Model):
     email = models.EmailField(max_length=254, help_text="Student's email address")
     birthday = models.DateField(auto_now_add=False, auto_now=False, default='2000-01-01')
     student_photo = models.ImageField()
-    assigned_teachers = models.ManyToManyField(Teacher)
+    assigned_teachers = models.ManyToManyField(Teacher, related_name="teachers")
+    assigned_assignments = models.ManyToManyField(Assignment, related_name="assignments")
 
     def __str__(self):
         return '%s, %s' % (self.last_name, self.first_name)
@@ -37,16 +39,3 @@ def create_student_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_student_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-# TODO: Create Assignment class
-class Assignment(models.Model):
-    pass
-
-
-# TODO: Create Question class
-class Question(models.Model):
-    pass
-
-
-# TODO: Create Answer class
