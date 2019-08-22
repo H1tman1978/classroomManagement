@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# TODO: Add url pattern for Student model class
+# TODO: Add url pattern for Teacher model class
+# TODO: Add url pattern for Assignment model class
+# TODO: Add url pattern for Question model class
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]

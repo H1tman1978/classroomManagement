@@ -4,6 +4,7 @@ import os
 import sys
 
 
+# don't change this file
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'classroomManagement.settings')
     try:
