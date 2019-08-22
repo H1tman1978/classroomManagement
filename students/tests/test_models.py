@@ -1,18 +1,27 @@
 from django.test import TestCase
-from classroom.models import Student
+from students.models import Student
+from assignments.models import Assignment
+from teachers.models import Teacher
 
 
 # Create your model tests here.
 class StudentTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
-        Student.objects.create(student_id="G00001", first_name="Sally", last_name="McGuire", grade_level="K",
-                               phone_number=5207057335, email="sally.mcguire@anyschool.com")
+        Student.objects.create(student_id="G00001",
+                               first_name="Sally",
+                               last_name="McGuire",
+                               grade_level="K",
+                               phone_number=5207057335,
+                               email="sally.mcguire@anyschool.com",
+                               assigned_teachers=Teacher.objects.create(title="Mr.", first_name="Larry",
+                                                                        last_name="Seinfeld"),
+                               )
 
     def test_get_absolute_url(self):
         student = Student.objects.get(id=1)
         # this will also fail if the urlconf is not defined
-        self.assertEquals(student.get_absolute_url(), '/classroom/student/1')
+        self.assertEquals(student.get_absolute_url(), '/students/student/1')
 
     def test_object_name_is_last_name_comma_first_name(self):
         student = Student.objects.get(id=1)
