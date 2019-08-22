@@ -1,5 +1,5 @@
 from django.test import TestCase
-from classroom.models import Student
+from students.models import Student
 
 
 # Create your model tests here.
@@ -12,7 +12,7 @@ class StudentTestCase(TestCase):
     def test_get_absolute_url(self):
         student = Student.objects.get(id=1)
         # this will also fail if the urlconf is not defined
-        self.assertEquals(student.get_absolute_url(), '/classroom/student/1')
+        self.assertEquals(student.get_absolute_url(), '/students/student/1')
 
     def test_object_name_is_last_name_comma_first_name(self):
         student = Student.objects.get(id=1)

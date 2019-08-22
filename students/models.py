@@ -4,15 +4,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 from phone_field import PhoneField
-from classroom.contentsettings import *
+from students.contentsettings import *
+from teachers.models import Teacher
 
 
 # Create your models here.
-# TODO: Create Teacher Class
-class Teacher(models.Model):
-    pass
-
-
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     student_id = models.CharField(max_length=15, unique=True, help_text="Student's School ID")
