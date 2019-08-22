@@ -1,4 +1,4 @@
-# File containing constants used in the students-app
+# File containing constants used in the classroomManagement app
 
 YEAR_IN_SCHOOL_CHOICES = [
     ('K', 'Kindergarten'),
