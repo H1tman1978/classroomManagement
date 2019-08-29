@@ -13,17 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from django.contrib import admin
 from django.urls import path, include
 import students.urls
 import teachers.urls
+from classroomManagement import settings
+from .views import welcome_view
 
 
 # TODO: Add url pattern for Assignment model class
 # TODO: Add url pattern for Question model class
 urlpatterns = [
+    path('', welcome_view),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('students/', include(students.urls)),
     path('teachers/', include(teachers.urls)),
-
 ]
+
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

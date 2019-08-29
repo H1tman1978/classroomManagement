@@ -1,0 +1,33 @@
+{# classroomManagement/templates/students/student_details.html #}
+{% extends 'base.html' %}
+{% load static %}
+{% get_media_prefix as MEDIA_URL %}
+
+{% block head_title %}
+{{ student.first_name }}&nbsp;{{ student.last_name }}
+{% endblock %}
+
+{% block head_meta_description %}
+This page gives all the student details for {{ student.first_name }} {{ student.last_name }}
+{% endblock %}
+
+{% block body_header_box %}
+{# TODO: Add header coding in this block #}
+{% endblock %}
+
+{% block body_sidebar_box %}
+{# TODO: Add sidebar coding to this block #}
+{% endblock %}
+
+{% block body_content_box %}
+    <h1>{{ student.first_name }}&nbsp;{{ student.last_name }}</h1>
+    <img src="{{ MEDIA_URL }}{{ student.photo.url }}" alt="picture of {{ student.first_name }} {{ student.last_name }}">
+    <hr>
+    <p>First Name:&nbsp;&nbsp;{{ student.first_name }}</p>
+    <p>Last Name:&nbsp;&nbsp;{{ student.last_name }}</p>
+    <p>Grade:  {{ student.grade_level }}</p>
+    <p>Birthday:  {{ student.birthday }}</p><br><br>
+    <h2>Contact Information:</h2>
+    <p>Phone:  <a href="tel: {{ student.phone_number }}"> {{ student.phone_number }}</a></p>
+    <p>Email:  <a href="mailto: {{ student.email }}">{{ student.email }}</a> </p>
+{% endblock %}

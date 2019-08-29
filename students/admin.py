@@ -1,5 +1,6 @@
 from django.contrib import admin
+from .models import Student
 
 # Register your models here.
-# Models should be Person with sub models of teacher, student, parent and Assignment
+admin.site.register(Student)
 

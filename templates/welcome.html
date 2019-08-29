@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+Welcome to {{ school_name }}
+{% endblock title %}
+{% block content %}
+    <div class="row">
+        <h1 class="h1">Welcome to the {{ school_name }} website!</h1>
+    </div>
+    <div class="row">
+        <h2 class="h2">Home of the {{ mascot }}!!</h2>
+    </div>
+    <hr>
+    <div class="row">
+        <h3 class="h3">We currently have <a href="{% url 'student_index' %}">{{ number_of_students }}</a>  students
+        who are taught by {{ number_of_teachers }} amazing teachers!</h3>
+    </div>
+    <p class="col-md-4">
+    Click <a href="{% url 'login' %}">here</a> to login.
+    </p>
+{% endblock content %}
