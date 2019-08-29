@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% get_media_prefix as MEDIA_URL %}
+
+{% block head_title %}
+    All Students
+{% endblock head_title %}
+
+
+{% block body_header_box %}
+
+{% endblock %}
+
+{# TODO: Rewrite this block to use  grid layout #}
+{% block body_content_box %}
+    <div class="row">
+        {% for student in student_list %}
+            <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="{{ MEDIA_URL }}{{ student.photo.url }}"
+                         alt="Photo of {{ student.first_name }} {{ student.last_name }}"
+                         height="250" width="182">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ student.first_name }}&nbsp;{{ student.last_name }}</h5>
+                        <p class="card-text">{{ student.phone_number }}</p>
+                        <a href="mailto:{{ student.email }}"
+                           class="btn btn-primary">
+                            Email Student
+                        </a>
+                        <a href="{% url 'student_detail' student.pk %}"
+                           class="btn btn-primary">View Student Detail</a>
+                    </div>
+                </div>
+            </div>
+         {% endfor %}
+    </div>
+{% endblock body_content_box %}

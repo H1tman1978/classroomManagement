@@ -4,7 +4,6 @@
 *.pyc
 __pycache__
 db.sqlite3
-media
 
 # Backup files #
 *.bak
@@ -184,3 +183,5 @@ GitHub.sublime-settings
 
 	# Android studio 3.1+ serialized cache file
 	.idea/caches/build_file_checksums.ser
+
+

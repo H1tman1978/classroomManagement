@@ -8,5 +8,12 @@ def index(request):
     context = {
         'teacher_list': teacher_list,
     }
+    return render(request, 'teachers/teacher_index.html', context)
 
-    return render(request, 'teacher_index.html', context)
+
+def detail_view(request, pk):
+    teacher = Teacher.objects.get(pk=pk)
+    context = {
+        'teacher': teacher
+    }
+    return render(request, 'teachers/teacher_detail.html', context)

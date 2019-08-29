@@ -1,88 +1,61 @@
-<!-- TODO: Finish this base file -->
-{# HTML5 declaration #}
+{# classroomManagement/templates/base.html #}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %}Home {% endblock title %} | CRM Easy</title>
-        {% block head_favicon %}
-            <link rel="icon" type="image/png"
-                  href="{{ STATIC_URL }}media/images/favicon.ico">
-        {% endblock head_favicon %}
-        {% block head_meta %}
-            {% block head_meta_charset %}
-                <meta http-equiv="Content-Type"
-                      content="text/html; charset=utf-8" />
-            {% endblock head_meta_charset %}
-            {% block head_meta_viewport %}
-                <meta name="viewport"
-                      content="width=device-width, initial-scale=1.0">
-            {% endblock head_meta_viewport %}
-        {% endblock head_meta %}
-        {% block head_css %}
-            {% block head_css_site %}
-                <link href="{{ STATIC_URL }}css/bootstrap.min.css"
-                      rel="stylesheet" media="screen">
-                <link href="{{ STATIC_URL }}css/app.css"
-                      rel="stylesheet" media="screen">
-            {% endblock head_css_site %}
-            {% block head_css_section %}{% endblock head_css_section %}
-            {% block head_css_page %}{% endblock head_css_page %}
-        {% endblock head_css %}
+        {% block head_content %}
+        <!-- TODO: Insert default head content -->
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="author" content="Tony Rolfe">
+            <meta name="description"
+                  content="
+                    {% block head_meta_description %}
+                        {# Insert Description with no quotes in this block #}
+                    {% endblock %}">
+            {% block head_meta %}
+                {# Insert custom meta tags in this block. #}
+            {% endblock %}
+            <title>
+                {% block head_title %}Default Title{% endblock %}
+            </title>
+            <link rel="stylesheet" href="{% static 'css/app.css' %}">
+            {% block head_css_link %}
+                {# Insert custom css links in this block. #}
+            {% endblock %}
+            <style>
+                {% block head_style %}
+                    {# Insert Custom Styling in this block: i.e. "{% grid %}" #}
+                {% endblock %}
+                .box {
+                          background-color: #444;
+                          color: #fff;
+                          border-radius: 5px;
+                          padding: 20px;
+                          font-size: 150%;
+                        }
+            </style>
+        {% endblock %}
     </head>
-        <body>
-        {# Navigation Menu #}
-        <header>
-            <div class="navbar navbar-default navbar-static-top
-            {% block nav-style %}{% endblock nav-style%}">
-                <div class="container p-none">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle"
-                                data-toggle="collapse"
-                                data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/">CRM Easy</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                        {% block user_authentication_block %}
-                            {% if user.is_authenticated %}
-                                <li><a href="">Logout</a></li>
-                                <li><a href=""
-                                       class="p-r-none">Accounts</a></li>
-                            {% else %}
-                                <li><a href="">Login</a></li>
-                                <li><a href="" class="p-r-none">Sign Up</a></li>
-                            {% endif %}
-                        {% endblock user_authentication_block%}
-                        </ul>
-                    </div>
-                </div>
+    <body>
+        <div class="grid-container">
+            <div class="header box">
+                <!-- TODO: Fix the logo so it displays properly -->
+                <img src="{% static 'images/frenship_logo_400x400.jpg' %}" class="header_image" alt="Frenship High School Logo">
+                {% block body_header_box %}
+                    {# insert custom code for the top header box in this block #}
+                {% endblock %}
             </div>
-        </header>
-        {# The Document Body #}
-        <div id="site-wrapper">
-            {% block content %}
-                if you see this, something is wrong!
-            {% endblock content %}
-        </div>
-        {# The Footer #}
-        <div class="footer">
-            <div class="container">
-                <p>Copyright CRM Easy</p>
+            <div class="sidebar_left box">
+                {% block body_sidebar_box %}
+                    {# insert code for the sidebar box in this block #}
+                {% endblock %}
+            </div>
+            <div class="content box">
+                {% block body_content_box %}
+                    {# insert code for the page's main content in this block #}
+                {% endblock %}
             </div>
         </div>
     </body>
-    {# Set of blocks that can be used to display JavaScript files #}
-    {% block footer_javascript %}
-        {% block footer_javascript_site %}
-            <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
-            <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-            <script src="{{ STATIC_URL }}js/app.js"></script>
-        {% endblock footer_javascript_site %}
-        {% block footer_javascript_section %}{% endblock footer_javascript_section %}
-        {% block footer_javascript_page %}{% endblock footer_javascript_page %}
-    {% endblock footer_javascript %}
 </html>

@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'students.apps.StudentConfig',
     'phone_field',
+    'students.apps.StudentConfig',
     'teachers.apps.TeachersConfig',
     'assignments.apps.AssignmentsConfig',
 ]
@@ -124,3 +124,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# Media Files uploaded from Users or during user creation
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/images/'
+
+# Settings below are for defining school information and apply to this app only
+SCHOOL_NAME = "Frenship High School"
+SCHOOL_MASCOT = "Tigers"
+
+# Login Redirect
+LOGIN_REDIRECT_URL = '/'
